@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
+"""Entry point for the application script."""
 
-from dataset import read_cancer_dataset, train_test_split, read_spam_dataset
+
+from dataset import read_cancer_dataset, read_spam_dataset, train_test_split
 from visualization import plot_precision_recall, plot_roc_curve
 
 X, y = read_cancer_dataset("cancer.csv")

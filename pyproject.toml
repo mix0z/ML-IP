@@ -13,8 +13,49 @@ matplotlib = "^3.3.2"
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.1"
 pytest-cov = "^2.10.1"
-
+flake8 = "^3.8.4"
+black = "^20.8b1"
+isort = "^5.6.4"
+Flake8-pyproject = "^1.2.1"
+flake8-bugbear = "^20.1.4"
+flake8-docstrings = "^1.5.0"
+flake8-import-order = "^0.18.1"
+flake8-quotes = "^3.2.0"
+flake8-builtins = "^1.5.2"
+pre-commit = "^2.9.3"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.isort]
+profile = "black"
+known_first_party = "scriptsMix0z"
+known_third_party = "pandas,matplotlib"
+
+[tool.black]
+line-length = 120
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.nox
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | venv
+)/
+'''
+
+
+[tool.flake8]
+max-line-length = 120
+ignore = ['Q000', 'I201', 'E203', 'I100']

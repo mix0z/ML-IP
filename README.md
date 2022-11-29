@@ -1,5 +1,7 @@
 # Классификация методом k ближайших соседей
 
+## Installation
+
 * Установка пакетного менеджера
 
 ```
@@ -30,3 +32,13 @@ https://test.pypi.org/project/scriptsmix0z/
 pip install -i https://test.pypi.org/simple/ scriptsmix0z
 ```
 
+## Code Style
+
+* isort
+* black
+* flake8
+    * flake8-bugbear
+    * flake8-docstrings
+    * flake8-import-order
+    * flake8-quotes
+    * flake8-builtins

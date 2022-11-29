@@ -1,12 +1,12 @@
-import numpy as np
+"""Visualization of the KNN algorithm on the Iris dataset."""
 import matplotlib.pyplot as plt
-
-
+import numpy as np
 from KNearest import KNearest
 from metrics import get_precision_recall_accuracy
 
 
 def plot_precision_recall(X_train, y_train, X_test, y_test, max_k=30):
+    """Plot precision-recall curve for different values of k."""
     ks = list(range(1, max_k + 1))
     classes = len(np.unique(list(y_train) + list(y_test)))
     precisions = [[] for _ in range(classes)]
@@ -41,6 +41,7 @@ def plot_precision_recall(X_train, y_train, X_test, y_test, max_k=30):
 
 
 def plot_roc_curve(X_train, y_train, X_test, y_test, max_k=30):
+    """Plot ROC curve for different values of k."""
     positive_samples = sum(1 for y in y_test if y == 0)
     ks = list(range(1, max_k + 1))
     curves_tpr = []
@@ -57,7 +58,8 @@ def plot_roc_curve(X_train, y_train, X_test, y_test, max_k=30):
             y_pred = [(0 if p > w else 1) for p in p_pred]
             tpr.append(sum(1 for yp, yt in zip(y_pred, y_test) if yp == 0 and yt == 0) / positive_samples)
             fpr.append(
-                sum(1 for yp, yt in zip(y_pred, y_test) if yp == 0 and yt != 0) / (len(y_test) - positive_samples))
+                sum(1 for yp, yt in zip(y_pred, y_test) if yp == 0 and yt != 0) / (len(y_test) - positive_samples)
+            )
         curves_tpr.append(tpr)
         curves_fpr.append(fpr)
     plt.figure(figsize=(7, 7))

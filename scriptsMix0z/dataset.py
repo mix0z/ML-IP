@@ -1,3 +1,4 @@
+"""Functions for data preprocessing."""
 from typing import Tuple
 
 import numpy as np
@@ -6,6 +7,7 @@ import pandas as pd
 
 def read_cancer_dataset(path_to_csv: str) -> Tuple[np.array, np.array]:
     """
+    Read cancer dataset.
 
     Parameters
     ----------
@@ -23,11 +25,15 @@ def read_cancer_dataset(path_to_csv: str) -> Tuple[np.array, np.array]:
 
     """
     df = pd.read_csv(path_to_csv).sample(frac=1).reset_index(drop=True)
-    return df.drop(columns='label').to_numpy(), df['label'].apply(lambda row: 1 if row == 'B' else 0).to_numpy()
+    return (
+        df.drop(columns="label").to_numpy(),
+        df["label"].apply(lambda row: 1 if row == "B" else 0).to_numpy(),
+    )
 
 
 def read_spam_dataset(path_to_csv: str) -> Tuple[np.array, np.array]:
     """
+    Read spam dataset.
 
     Parameters
     ----------
@@ -44,12 +50,12 @@ def read_spam_dataset(path_to_csv: str) -> Tuple[np.array, np.array]:
 
     """
     df = pd.read_csv(path_to_csv).sample(frac=1).reset_index(drop=True)
-    return df.drop(columns='label').to_numpy(), df['label'].to_numpy()
+    return df.drop(columns="label").to_numpy(), df["label"].to_numpy()
 
 
-def train_test_split(X: np.array, y: np.array, ratio: float
-                     ) -> Tuple[np.array, np.array, np.array, np.array]:
+def train_test_split(X: np.array, y: np.array, ratio: float) -> Tuple[np.array, np.array, np.array, np.array]:
     """
+    Split dataset into train and test parts.
 
     Parameters
     ----------
@@ -73,12 +79,16 @@ def train_test_split(X: np.array, y: np.array, ratio: float
 
     """
     df = pd.DataFrame(X)
-    df['label'] = y
+    df["label"] = y
 
     train_size = int(ratio * len(df.index))
     test_size = len(df.index) - train_size
 
     df_train, df_test = df.head(train_size), df.tail(test_size)
 
-    return df_train.drop(columns='label').to_numpy(), df_train['label'].to_numpy(), \
-           df_test.drop(columns='label').to_numpy(), df_test['label'].to_numpy()
+    return (
+        df_train.drop(columns="label").to_numpy(),
+        df_train["label"].to_numpy(),
+        df_test.drop(columns="label").to_numpy(),
+        df_test["label"].to_numpy(),
+    )

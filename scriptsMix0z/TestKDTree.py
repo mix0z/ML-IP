@@ -1,14 +1,20 @@
+"""Tests for `kdtree` package."""
 import numpy as np
-
 from KDTree import KDTree
 
 
 def true_closest(X_train, X_test, k):
+    """Find the true closest points in X_train to each point in X_test."""
     result = []
     for x0 in X_test:
-        bests = list(sorted([(i, np.linalg.norm(x - x0)) for i, x in enumerate(X_train)], key=lambda x: x[1]))
+        bests = list(
+            sorted(
+                [(i, np.linalg.norm(x - x0)) for i, x in enumerate(X_train)],
+                key=lambda x: x[1],
+            )
+        )
         bests = [i for i, d in bests]
-        result.append(bests[:min(k, len(bests))])
+        result.append(bests[: min(k, len(bests))])
     return result
 
 

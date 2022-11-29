@@ -1,11 +1,13 @@
-from typing import NoReturn, List
+"""Implementation of K-Nearest Neighbors algorithm."""
+from typing import List, NoReturn
 
 import numpy as np
-
 from KDTree import KDTree
 
 
 class KNearest:
+    """K Nearest Neighbors classifier."""
+
     tree = None
     n_neighbors = None
     leaf_size = None
@@ -15,6 +17,7 @@ class KNearest:
 
     def __init__(self, n_neighbors: int = 5, leaf_size: int = 30):
         """
+        Initialize K Nearest Neighbors classifier.
 
         Parameters
         ----------
@@ -29,6 +32,7 @@ class KNearest:
 
     def fit(self, X: np.array, y: np.array) -> NoReturn:
         """
+        Fit the model using X as training data and y as target values.
 
         Parameters
         ----------
@@ -38,7 +42,6 @@ class KNearest:
             Метки точек, по которым строится классификатор.
 
         """
-
         self.tree = KDTree(X, leaf_size=self.leaf_size)
         self.y_train = y
         self.classes = sorted(np.unique(y))
@@ -51,6 +54,7 @@ class KNearest:
 
     def predict_proba(self, X: np.array) -> List[np.array]:
         """
+        Get probabilities for each class.
 
         Parameters
         ----------
@@ -67,7 +71,7 @@ class KNearest:
         """
         ans_arr = []
         predicted = self.tree.query(X, k=self.n_neighbors)
-        for ind, x in enumerate(X):
+        for ind, _ in enumerate(X):
             tmp_arr = []
             for clas in self.classes:
                 summ = 0
@@ -81,6 +85,7 @@ class KNearest:
 
     def predict(self, X: np.array) -> np.array:
         """
+        Predict the class labels for the provided data.
 
         Parameters
         ----------
