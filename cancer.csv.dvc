@@ -1,0 +1,4 @@
+outs:
+- md5: 38e018d463eea747d0019af6e1d76cc0
+  size: 119975
+  path: cancer.csv
