@@ -1,0 +1,3 @@
+stages:
+  test:
+    cmd: python3 scriptsMix0z/main.py

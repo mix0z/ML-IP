@@ -1,0 +1,4 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: python3 scriptsMix0z/main.py
