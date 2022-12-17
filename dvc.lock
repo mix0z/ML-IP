@@ -2,3 +2,40 @@ schema: '2.0'
 stages:
   train:
     cmd: python3 scriptsMix0z/main.py
+  prepare_data:
+    cmd: python3 scriptsMix0z/dataset.py
+    deps:
+    - path: cancer.csv
+      md5: 1997e3143a3b6bab29f5a5efea3f9c8b
+      size: 119385
+    outs:
+    - path: data/X_test.npy
+      md5: 94f8f34c653a65529b1ba948951bcd49
+      size: 19952
+    - path: data/X_train.npy
+      md5: dfde1dd64706c258f47b57074d84f432
+      size: 176088
+    - path: data/y_test.npy
+      md5: 379ea089322d9dca376a3aef4cc6104d
+      size: 662
+    - path: data/y_train.npy
+      md5: 57040c212e97e2f1b0b33d13442e704e
+      size: 4279
+  vizualize:
+    cmd: python3 scriptsMix0z/visualization.py
+    deps:
+    - path: data/X_test.npy
+      md5: 94f8f34c653a65529b1ba948951bcd49
+      size: 19952
+    - path: data/X_train.npy
+      md5: dfde1dd64706c258f47b57074d84f432
+      size: 176088
+    - path: data/y_test.npy
+      md5: 379ea089322d9dca376a3aef4cc6104d
+      size: 662
+    - path: data/y_train.npy
+      md5: 57040c212e97e2f1b0b33d13442e704e
+      size: 4279
+    - path: scriptsMix0z/visualization.py
+      md5: 66a733139fd30331f83cf557ecb7212d
+      size: 3110

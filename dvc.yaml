@@ -1,3 +1,19 @@
 stages:
-  test:
-    cmd: python3 scriptsMix0z/main.py
+  prepare_data:
+    cmd: python3 scriptsMix0z/dataset.py
+    deps:
+      - cancer.csv
+    outs:
+    - data/X_train.npy
+    - data/X_test.npy
+    - data/y_train.npy
+    - data/y_test.npy
+
+  vizualize:
+    cmd: python3 scriptsMix0z/visualization.py
+    deps:
+    - scriptsMix0z/visualization.py
+    - data/X_train.npy
+    - data/X_test.npy
+    - data/y_train.npy
+    - data/y_test.npy

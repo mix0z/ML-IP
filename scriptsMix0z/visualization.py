@@ -72,3 +72,12 @@ def plot_roc_curve(X_train, y_train, X_test, y_test, max_k=30):
     plt.ylim(-0.01, 1.01)
     plt.tight_layout()
     plt.show()
+
+
+if __name__ == "__main__":
+    X_train = np.load("data/X_train.npy", allow_pickle=True)
+    y_train = np.load("data/y_train.npy", allow_pickle=True)
+    X_test = np.load("data/X_test.npy", allow_pickle=True)
+    y_test = np.load("data/y_test.npy", allow_pickle=True)
+    plot_precision_recall(X_train, y_train, X_test, y_test)
+    plot_roc_curve(X_train, y_train, X_test, y_test, max_k=10)

@@ -1,4 +1,5 @@
 """Functions for data preprocessing."""
+import os
 from typing import Tuple
 
 import numpy as np
@@ -92,3 +93,14 @@ def train_test_split(X: np.array, y: np.array, ratio: float) -> Tuple[np.array, 
         df_test.drop(columns="label").to_numpy(),
         df_test["label"].to_numpy(),
     )
+
+
+if __name__ == "__main__":
+    X, y = read_cancer_dataset("cancer.csv")
+    X_train, y_train, X_test, y_test = train_test_split(X, y, 0.9)
+    if not os.path.exists("data"):
+        os.mkdir("data")
+    X_train.dump("data/X_train.npy")
+    y_train.dump("data/y_train.npy")
+    X_test.dump("data/X_test.npy")
+    y_test.dump("data/y_test.npy")

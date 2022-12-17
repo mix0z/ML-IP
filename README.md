@@ -42,3 +42,10 @@ pip install -i https://test.pypi.org/simple/ scriptsmix0z
     * flake8-import-order
     * flake8-quotes
     * flake8-builtins
+
+
+## Pipeline
+
+To reproduce the results of the pipeline, run the following commands:
+
+```dvc repro```
